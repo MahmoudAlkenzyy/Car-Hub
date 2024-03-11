@@ -9,6 +9,20 @@ export default async function Home() {
     return (
         <main>
             <Hero />
+            <div className="mt-12 padding-x padding-y max-width" id="discover">
+                <div className="home__text-container">
+                    <h1 className="text-4xl font-extrabold">Car Catalogue</h1>
+                    <p>Expolore the cars you mighr like</p>
+                </div>
+
+                <div className="home__filters">
+                    <SearchBar />
+                    <div className="home__filter-container">
+                        <CustomeFilter title="fuel" />
+                        <CustomeFilter title="year" />
+                    </div>
+                </div>
+            </div>
         </main>
     );
 }
