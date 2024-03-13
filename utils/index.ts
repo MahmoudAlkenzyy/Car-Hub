@@ -1,8 +1,7 @@
 import { carProps } from '../types';
 
 export async function fetchCars() {
-    const url =
-        'https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=carrera';
+    const url = 'https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=q3';
     const headers = {
         'X-RapidAPI-Key': 'efb649e564msh86af3c56ca4aa62p17198bjsnd52ba137259f',
         'X-RapidAPI-Host': 'cars-by-api-ninjas.p.rapidapi.com',
@@ -42,6 +41,7 @@ export const generateCarImageUrl = (car: carProps, angle?: string) => {
     url.searchParams.append('make', make);
     url.searchParams.append('modelFamily', model.split(' ')[0]);
     url.searchParams.append('zoomType', 'fullscreen');
-    url.searchParams.append('angle', `${angle}`);
+    angle && url.searchParams.append('angle', `${angle}`);
+    // console.log(url);
     return `${url}`;
 };
