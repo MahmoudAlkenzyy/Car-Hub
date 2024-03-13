@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { calculateCarRent } from '@/utils';
+import { calculateCarRent, generateCarImageUrl } from '@/utils';
 import { carProps } from '@/types';
 import Image from 'next/image';
 import CustomeButton from './CustomeButton';
@@ -27,7 +27,7 @@ const CarCard = ({ car }: carCardProps) => {
             </p>
             <div className="relative w-full h-40 my-3 object-contain">
                 <Image
-                    src="/hero.png"
+                    src={generateCarImageUrl(car)}
                     alt="car model"
                     fill
                     priority
@@ -72,7 +72,7 @@ const CarCard = ({ car }: carCardProps) => {
                         containerStyles="w-full py-[16px] rounded-full bg-primary-blue"
                         textStyle="text-white"
                         rightIcon="/right-arrow.svg"
-                        handleClick={() => setIsOpen(false)}
+                        handleClick={() => setIsOpen(true)}
                     />
                 </div>
             </div>
