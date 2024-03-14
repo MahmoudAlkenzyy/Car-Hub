@@ -1,7 +1,7 @@
 // ('use client');
 import { CustomeFilter, SearchBar, Hero, CarCard } from '@/components';
 import { fetchCars } from '../utils';
-import { fuels } from '@/constants';
+import { fuels, yearsOfProduction } from '@/constants';
 export default async function Home({ searchParams }) {
     const allCars = await fetchCars({
         manufacturer: searchParams.manufacturer || '',
@@ -25,8 +25,11 @@ export default async function Home({ searchParams }) {
                 <div className="home__filters">
                     <SearchBar />
                     <div className="home__filter-container">
-                        <CustomeFilter title="fuel" />
-                        <CustomeFilter title="year" />
+                        <CustomeFilter title="fuel" options={fuels} />
+                        <CustomeFilter
+                            title="year"
+                            options={yearsOfProduction}
+                        />
                     </div>
                 </div>
 
