@@ -1,7 +1,9 @@
-import { carProps } from '../types';
+import { FilterProps, carProps } from '@/types';
 
-export async function fetchCars() {
-    const url = 'https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=q3';
+export async function fetchCars(filters: FilterProps) {
+    const { manufacturer, year, fuel, limit, model } = filters;
+
+    const url = `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=${model}&year=${year}&manufacturer=${manufacturer}&limit=${limit}&fuel_type=${fuel}`;
     const headers = {
         'X-RapidAPI-Key': 'efb649e564msh86af3c56ca4aa62p17198bjsnd52ba137259f',
         'X-RapidAPI-Host': 'cars-by-api-ninjas.p.rapidapi.com',
@@ -10,6 +12,7 @@ export async function fetchCars() {
     try {
         const response = await fetch(url, { headers });
         const result = await response.json();
+        console.log(url);
         // console.log(result)
         return result;
     } catch (error) {
