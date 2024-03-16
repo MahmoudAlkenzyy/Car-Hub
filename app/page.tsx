@@ -1,6 +1,6 @@
 // ('use client');
-import { CustomeFilter, SearchBar, Hero, CarCard } from '@/components';
-import { fetchCars } from '../utils';
+import { CustomeFilter, SearchBar, Hero, CarCard, ShowMore } from '@/components';
+import { fetchCars } from '@/utils';
 import { fuels, yearsOfProduction } from '@/constants';
 export default async function Home({ searchParams }) {
     const allCars = await fetchCars({
@@ -10,8 +10,7 @@ export default async function Home({ searchParams }) {
         limit: searchParams.limit || 10,
         model: searchParams.model || '',
     });
-    const isDataEmpty =
-        !Array.isArray(allCars) || allCars.length < 1 || !allCars;
+    const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;
 
     return (
         <main>
@@ -26,10 +25,7 @@ export default async function Home({ searchParams }) {
                     <SearchBar />
                     <div className="home__filter-container">
                         <CustomeFilter title="fuel" options={fuels} />
-                        <CustomeFilter
-                            title="year"
-                            options={yearsOfProduction}
-                        />
+                        <CustomeFilter title="year" options={yearsOfProduction} />
                     </div>
                 </div>
 
@@ -40,12 +36,14 @@ export default async function Home({ searchParams }) {
                                 <CarCard key={idx} car={car} />
                             ))}
                         </div>
+                        <ShowMore
+                            pageNumber={(searchParams.pageNumber || 10) / 10}
+                            isNext={(searchParams.limit || 10) > allCars.length}
+                        />
                     </section>
                 ) : (
                     <div className="home__error-container">
-                        <h2 className="text-black text-xl font-bold">
-                            Oops, no results
-                        </h2>
+                        <h2 className="text-black text-xl font-bold">Oops, no results</h2>
                         {/* <p>{allCars?.message}</p> */}
                     </div>
                 )}

@@ -7,15 +7,6 @@ import SearchBar from './SearchBar';
 import CarCard from './CarCard';
 import CarDetails from './CarDetails';
 import SearchButton from './SearchButton';
+import ShowMore from './ShowMore';
 
-export {
-    Hero,
-    CustomeButton,
-    Navbar,
-    Footer,
-    CustomeFilter,
-    SearchBar,
-    CarCard,
-    CarDetails,
-    SearchButton,
-};
+export { Hero, CustomeButton, Navbar, Footer, CustomeFilter, SearchBar, CarCard, CarDetails, SearchButton, ShowMore };
