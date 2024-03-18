@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
-import Searchmanufacture from './Searchmanufacture';
-import SearchButton from './SearchButton';
+import { Searchmanufacture } from '@/components';
+import { SearchButton } from '@/components';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
@@ -30,19 +30,14 @@ const SearchBar = () => {
             searchParams.set('manufacturer', manufacturers);
         } else searchParams.delete('manufacturers');
 
-        const newPathname = `${
-            window.location.pathname
-        }?${searchParams.toString()}`;
+        const newPathname = `${window.location.pathname}?${searchParams.toString()}`;
 
         router.push(newPathname);
     };
     return (
         <form className="searchbar" onSubmit={handleSearch}>
             <div className="searchbar__item">
-                <Searchmanufacture
-                    manufacturer={manufacturers}
-                    setManufacturer={setManufacturers}
-                />
+                <Searchmanufacture manufacturer={manufacturers} setManufacturer={setManufacturers} />
                 <SearchButton otherClasses="sm:hidden" />
             </div>
             <div className="searchbar__item">

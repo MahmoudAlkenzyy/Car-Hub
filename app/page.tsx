@@ -2,7 +2,11 @@
 import { CustomeFilter, SearchBar, Hero, CarCard, ShowMore } from '@/components';
 import { fetchCars } from '@/utils';
 import { fuels, yearsOfProduction } from '@/constants';
-export default async function Home({ searchParams }) {
+import { FilterProps } from '@/types';
+
+export default async function Home({ searchParams }: any) {
+    console.log('casc', searchParams);
+
     const allCars = await fetchCars({
         manufacturer: searchParams.manufacturer || '',
         year: searchParams.year || 2023,
@@ -21,9 +25,9 @@ export default async function Home({ searchParams }) {
                     <p>Expolore the cars you mighr like</p>
                 </div>
 
-                <div className="home__filters">
+                <div className="home__filters ">
                     <SearchBar />
-                    <div className="home__filter-container">
+                    <div className="home__filter-container ">
                         <CustomeFilter title="fuel" options={fuels} />
                         <CustomeFilter title="year" options={yearsOfProduction} />
                     </div>
